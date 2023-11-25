@@ -1,6 +1,6 @@
 import Button from "./components/MyButton";
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [latitude, setLatitude] = useState('');
@@ -16,6 +16,16 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
   }
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    })
+
+    console.log("LATITUDE IS:", latitude)
+    console.log("LONGITUDE IS:", longitude)
+  }, [latitude, longitude])
 
   const handleNearMeClick = async () => {
     try {
