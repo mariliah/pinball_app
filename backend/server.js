@@ -10,7 +10,7 @@ app.get('https://pinballmap.com/api/v1/locations/closest_by_lat_lon.json', async
     const { lat, lon } = req.query;
 
     try {
-        const apiRespone = await axiost.get(`https://pinballmap.com/api/v1/locations/closest_by_lat_lon.json?lat=${lat}&{lon}'`);
+        const apiResponse = await axios.get(`https://pinballmap.com/api/v1/locations/closest_by_lat_lon.json?lat=${lat}&lon=${lon}`);
         const locations = apiResponse.data;
 
         res.json(locations);

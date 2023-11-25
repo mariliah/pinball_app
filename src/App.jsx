@@ -7,9 +7,13 @@ function App() {
   const [longitude, setLongitude] = useState('');
   const [locations, setLocations] = useState([]);
 
-  // fetch('https://pinballmap.com/api/v1/machines.json')
+  // const allMachines = fetch('https://pinballmap.com/api/v1/machines.json')
   //   .then(response => response.json())
-  //   .then(console.log("ALL MACHINES", json()))
+  //   .then(json => console.log("ALL MACHINES", json))
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
   const handleNearMeClick = async () => {
     try {
@@ -47,7 +51,7 @@ function App() {
   }
   return (
     <div className="App">
-      <label>
+      <label onSubmit={handleSubmit}>
         Latitude:
         <input type="text" value={latitude} onChange={(e) => setLatitude(e.target.value)} />
       </label>
@@ -63,9 +67,13 @@ function App() {
         <ul>
           {locations.map((location) => (
             <li key={location.id}>{location.name}</li>
-
           ))}
         </ul>
+        {/* <ul>
+          <li>{allMachines.map((machine) => {
+            { machine.name }
+          })}</li>
+        </ul> */}
       </div>
     </div>
   );
