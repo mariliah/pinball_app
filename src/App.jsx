@@ -7,6 +7,8 @@ function App() {
   const [longitude, setLongitude] = useState('');
   const [locations, setLocations] = useState([]);
 
+  //information about machines
+
   // const allMachines = fetch('https://pinballmap.com/api/v1/machines.json')
   //   .then(response => response.json())
   //   .then(json => console.log("ALL MACHINES", json))
@@ -69,11 +71,6 @@ function App() {
             <li key={location.id}>{location.name}</li>
           ))}
         </ul>
-        {/* <ul>
-          <li>{allMachines.map((machine) => {
-            { machine.name }
-          })}</li>
-        </ul> */}
       </div>
     </div>
   );
