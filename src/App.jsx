@@ -10,7 +10,8 @@ export default function App() {
 
   //list of locations
   const [locations, setLocations] = useState([]);
-  const [fetchLocation, setFetchLocation] = useState(false)
+  const [fetchLocation, setFetchLocation] = useState(false);
+
 
   useEffect(() => {
     const getLocation = async () => {
@@ -39,10 +40,17 @@ export default function App() {
       const response = await fetch(`https://pinballmap.com/api/v1/locations/closest_by_lat_lon.json?lat=${latitude}&lon=${longitude}`, {
         params: {
           longitude,
-          latitude
+          latitude,
         }
       })
-      setLocations([...locations, response.data]);
+
+      console.log('API RESPONSE:', response);
+
+      if (response && response.data) {
+        setLocations([...locations, response.data]);
+      } else {
+        console.error('INVALID API RESPONSE:', response)
+      }
     }
     catch (error) {
       console.error('Error fetching pinball locations', error)
@@ -81,6 +89,7 @@ export default function App() {
       <div>
         <h2>Pinball locations</h2>
         <ul>
+          {console.log('LOCATIONS: ', locations)}
           {locations.map((location) => (
             <li key={location.id}>{location.name}</li>
           ))}
