@@ -37,12 +37,7 @@ export default function App() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://pinballmap.com/api/v1/locations/closest_by_lat_lon.json?lat=${latitude}&lon=${longitude}`, {
-        params: {
-          longitude,
-          latitude,
-        }
-      })
+      const response = await fetch(`https://pinballmap.com/api/v1/locations/closest_by_lat_lon.json?lat=${latitude}&lon=${longitude}`)
 
       console.log('API RESPONSE:', response);
 
